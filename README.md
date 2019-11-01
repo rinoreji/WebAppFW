@@ -1,2 +1,2 @@
 # WebApp Framework
-Skeleton, Angular, Asp.Net Core, EF Core, IdentityServer4
+Skeleton, Angular, Asp.Net Identity, WebAPI Core, EF Core, IdentityServer4
