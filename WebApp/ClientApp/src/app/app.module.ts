@@ -12,6 +12,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
+import { API_BASE_URL } from './web-api.g';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -33,8 +35,12 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
     ])
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
+	  { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
+	  { provide: API_BASE_URL, useFactory: getApiBaseUrl },
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function getApiBaseUrl(): string {
+	return environment.apiBaseUrl;
+}
